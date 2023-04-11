@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        #container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(30%, 1fr));
+            grid-gap: 0px 20px;
+        }
+
+        #container>div {
+            padding-bottom: 20px;
+            box-sizing: border-box;
+        }
+
+        #container>div>div {
+            border: 1px solid #5e5e5e;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <h1></h1>
+    <div id="container"></div>
+    <script>
+        function render() {
+            const oContainer = document.getElementById('container');
+            //1.创建文档碎片
+            const oFragement = document.createDocumentFragment()
+            //创建500个Div 等宽不等高,高度100-300
+            for (let i = 0; i < 500; i++) {
+                const oDiv = document.createElement('div');
+                const height = parseInt((Math.random() * (200 + 1))) + 100
+                oDiv.style.height = height + 'px'
+
+                oDiv.style.gridRow = `auto / span ${height}`
+                const cDiv = document.createElement('div')
+                oDiv.appendChild(cDiv)
+                cDiv.innerHTML = height
+                oFragement.appendChild(oDiv)
+            }
+            oContainer.appendChild(oFragement)
+        }
+
+        render()
+
+    </script>
+</body>
+
+</html>
